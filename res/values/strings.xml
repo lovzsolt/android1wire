@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">android1wire</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="download">Letöltés</string>
+    <string name="erzekelo">Érzékelő</string>
+    <string name="beallitas">Beállítások</string>
+    <string name="vezerlo">Vezérlő</string>
+    <string name="title_activity_vezerlo">VezerloActivity</string>
+    <string name="title_activity_erzekelo">ErzekeloActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <!-- beállítás képernyő -->
+    <string name="host_label">Hoszt:</string>
+    <string name="host_hint">hoszt neve</string>
+    <string name="port_label">Port:</string>
+    <string name="port_hint">port száma</string>
+    <string name="file_label">File: </string>
+    <string name="file_hint">file neve</string>
+    <string name="save_button">Mentés</string>
+    <string name="title_activity_host_fragment">HostFragmentActivity</string>
+    <string name="erz_nev">Név</string>
+    <string name="erz_id">ID</string>
+    <string name="diag_ok">Rendben</string>
+    <string name="diag_megse">Mégsem</string>
+    <string name="title_activity_splash">SplashActivity</string>
+
+</resources>
