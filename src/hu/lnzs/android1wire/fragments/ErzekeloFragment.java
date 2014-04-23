@@ -1,16 +1,9 @@
 package hu.lnzs.android1wire.fragments;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import hu.lnzs.android1wire.R;
 import hu.lnzs.android1wire.data.ErzekeloData;
 import hu.lnzs.android1wire.logic.DownloaderTask;
@@ -19,10 +12,8 @@ import hu.lnzs.android1wire.logic.IDataLoader;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +24,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ErzekeloFragment extends Fragment implements IDataLoader {

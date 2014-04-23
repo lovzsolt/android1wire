@@ -53,11 +53,6 @@ public class DownloaderTask extends AsyncTask<String, String, String> {
 	@Override
 	protected String doInBackground(String... params) {
 		Log.w("background", "start");
-		String par0 ="";
-		/*if(params.length !=0){
-			par0 = params[0];
-		}
-		*/
 		try {
 			owClient = new OwHttpClient();
 			valasz = owClient.owhttpReader(this.deviceKey);

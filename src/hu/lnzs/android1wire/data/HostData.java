@@ -10,19 +10,21 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-
 import org.apache.http.HttpHost;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 public class HostData {
-	public static HttpHost host;
-	public static final String FILENAME = "host_file";
+	private static HttpHost host;
+	
+	public static HttpHost getHost() {
+		return host;
+	}
+	
+	private static final String FILENAME = "host_file";
 	public static void initHostData(String h, String p){
 		HostData.host = new HttpHost(h, Integer.valueOf(p));
 		Log.i("hostlog",HostData.host.toString());

@@ -13,18 +13,15 @@ import java.util.Iterator;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.Map.Entry;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 public class ErzekeloData {
 	private static SortedMap<String, Erzekelo> erzekeloSortMap;
-	public static final String FILENAME = "erzekelo_file";
+	private static final String FILENAME = "erzekelo_file";
 
 	static {
 		erzekeloSortMap = new TreeMap<String, Erzekelo>();

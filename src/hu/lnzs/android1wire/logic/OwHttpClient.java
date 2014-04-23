@@ -2,6 +2,7 @@ package hu.lnzs.android1wire.logic;
 
 import hu.lnzs.android1wire.data.ErzekeloData;
 import hu.lnzs.android1wire.data.HostData;
+import hu.lnzs.android1wire.data.VezerloData;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +10,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,21 +57,18 @@ public class OwHttpClient {
 			// and connect!
 			urlConnection.connect();
 
-			 int status = urlConnection.getResponseCode();
+			int status = urlConnection.getResponseCode();
 			if (status >= HttpStatus.SC_BAD_REQUEST) {
 				valaszStream = urlConnection.getErrorStream();
 				Log.e("statusz", String.valueOf(status));
 			} else {
 
-				HttpClient httpclient = new DefaultHttpClient();
 				HttpGet httpget = new HttpGet(HostData.getURL(file).toURI());
 				// Execute the request
 				HttpResponse response;
 				try {
-					response = httpclient.execute(httpget);
-					// Examine the response status
-					Log.i("Praeda", response.getStatusLine().toString());
 
+					response = new DefaultHttpClient().execute(httpget);
 					// Get hold of the response entity
 					HttpEntity entity = response.getEntity();
 					// If the response does not enclose an entity, there is no
@@ -100,9 +97,7 @@ public class OwHttpClient {
 
 				} catch (Exception e) {
 				}
-
 			}
-
 			urlConnection.disconnect();
 		} catch (MalformedURLException e) {
 			Log.e("reader",
@@ -128,15 +123,11 @@ public class OwHttpClient {
 			// érzékelõk
 			if (elemId.startsWith("10.")) {
 				mErzekelo = new Erzekelo(elemId);
-				modulok.put(elemId, "erzekelo");
-				erzekeloSortMap.put(elemId, mErzekelo);
-				erzekeloMap.add(mErzekelo);
-				// vezérlõ
+				ErzekeloData.putMap(mErzekelo);
 			} else if (elemId.startsWith("29.")) {
-				modulok.put(elemId, "vezerlo");
+				VezerloData.init(elemId, "0");
 			}
 		}
-		ErzekeloData.setErzekeloSortMap(erzekeloSortMap);
 	}
 
 	protected void owhttpRespErzekeloFeldolgozo(String httpValasz,
@@ -161,6 +152,17 @@ public class OwHttpClient {
 		}
 		adatok.put("url", "?a=" + erzekeloNev);
 		xErzekelo.setData(adatok);
+	}
+
+	protected void owhttpRespVezerloFeldolgozo(String httpValasz) {
+		Log.w("hvalasz", httpValasz);
+		Document doc = Jsoup.parse(httpValasz);
+		Element table = doc.getElementsByTag("table").get(1);
+		/* vezerlõ Byte formátumban */
+		VezerloData.dataByte = Byte.valueOf(table
+				.getElementsByAttributeValue("name", "PIO.BYTE").get(0).val()
+				.trim());
+		/* vezérlõ tömbként */
 	}
 
 }

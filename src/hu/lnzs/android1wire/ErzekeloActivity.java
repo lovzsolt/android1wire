@@ -3,26 +3,18 @@ package hu.lnzs.android1wire;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import hu.lnzs.android1wire.data.ErzekeloData;
-import hu.lnzs.android1wire.data.HostData;
-import hu.lnzs.android1wire.fragments.ErzekeloDiagFragment;
-import hu.lnzs.android1wire.fragments.ErzekeloFragment;
 import hu.lnzs.android1wire.logic.DownloaderTask;
 import hu.lnzs.android1wire.logic.Erzekelo;
 import hu.lnzs.android1wire.logic.IDataLoader;
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ErzekeloActivity extends Activity implements IDataLoader {

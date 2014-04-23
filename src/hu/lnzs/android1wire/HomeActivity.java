@@ -38,7 +38,7 @@ public class HomeActivity extends Activity {
 			}
 		});
 		if (HostData.loadDataFromFile(this.getApplicationContext()) &&	ErzekeloData.loadDataFromFile(this.getApplicationContext())){
-			Log.w("load", "betöltés sikeres"+HostData.host.getHostName()+"::"+HostData.host.getPort());
+			Log.w("load", "betöltés sikeres");
 		} else{
 			Log.w("load", "betöltés sikertelen");
 		}

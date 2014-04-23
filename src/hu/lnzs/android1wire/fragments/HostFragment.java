@@ -22,18 +22,17 @@ import android.widget.Toast;
 
 public class HostFragment extends Fragment {
 
-	
 	private View mRootView;
 	private Context mContext;
 	private EditText hostText;
 	private EditText portText;
 	private CheckBox chkEmulator;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		mRootView = inflater.inflate(R.layout.host_settings_fragment,
-				container, false); 
+				container, false);
 		mContext = inflater.getContext();
 		// nem kell: Bundle args = getArguments();
 		hostText = (EditText) mRootView.findViewById(R.id.hostText);
@@ -52,9 +51,9 @@ public class HostFragment extends Fragment {
 	}
 
 	private void loadDataFromObject() {
-			if(HostData.host != null){
-			hostText.setText(HostData.host.getHostName());
-			portText.setText(String.valueOf(HostData.host.getPort()));
+		if (HostData.getHost() != null) {
+			hostText.setText(HostData.getHost().getHostName());
+			portText.setText(String.valueOf(HostData.getHost().getPort()));
 		}
 	}
 
@@ -70,10 +69,11 @@ public class HostFragment extends Fragment {
 		 * egyelõre a fõszálban mûködik a mentés, de ezt késõbb lehet
 		 * háttérszálba tenni!
 		 */
-		HostData.initHostData(hostText.getText().toString(), portText.getText().toString());
+		HostData.initHostData(hostText.getText().toString(), portText.getText()
+				.toString());
 		HostData.setEmulator(chkEmulator.isChecked());
 		HostData.saveDataToFile(mContext);
-	
+
 	}
 
 }
