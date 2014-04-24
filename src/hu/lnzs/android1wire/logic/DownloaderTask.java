@@ -12,7 +12,7 @@ public class DownloaderTask extends AsyncTask<String, String, String> {
 	private IDataLoader mDLoader;
 	protected ListView mLv;
 	private String deviceKey;
-	public enum DATATYPE{HEAD, CHILD};
+	public enum DATATYPE{HEAD, ERZEKELO, VEZERLO};
 	private DATATYPE mDataType;
 	public DownloaderTask(IDataLoader dLoader, DATATYPE dType, String dKey) {
 		mDLoader = dLoader;
@@ -29,12 +29,16 @@ public class DownloaderTask extends AsyncTask<String, String, String> {
 				owClient.owhttpRespMainFeldolgozo(valasz);
 				mDLoader.loadDataFromObj();
 				break;
-			case CHILD:
+			case ERZEKELO:
 				Erzekelo mErzekelo = ErzekeloData.getErzById(this.deviceKey);
 				owClient.owhttpRespErzekeloFeldolgozo(valasz, mErzekelo);
 				//mDLoader.loadDataFromObj();
 				ErzekeloData.putMap(mErzekelo);
 				mDLoader.onClick(null, 0);
+				break;
+			case VEZERLO:
+				owClient.owhttpRespVezerloFeldolgozo(valasz);
+				mDLoader.loadDataFromObj();
 				break;
 			}
 

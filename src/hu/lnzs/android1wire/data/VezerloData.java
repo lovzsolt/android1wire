@@ -1,7 +1,5 @@
 package hu.lnzs.android1wire.data;
 
-import hu.lnzs.android1wire.logic.Erzekelo;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,8 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
-import java.util.Map.Entry;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,10 +48,12 @@ public class VezerloData {
 				id = vezerloIterator.next();
 				dataByte = Byte.valueOf((String) vezObj.get(id));
 		} catch (JSONException e) {
+			Log.e("verzerlo_loadData", e.getLocalizedMessage());
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(context, "nincs ilyen fájl", Toast.LENGTH_SHORT)
 					.show();
+			Log.e("verzerlo_loadData", e.getLocalizedMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
 			Log.e("verzerlo_loadData", e.getLocalizedMessage());
@@ -81,7 +79,6 @@ public class VezerloData {
 		FileOutputStream fileOutStream;
 		JSONObject vezerloData = new JSONObject();
 		try {
-
 				vezerloData.put(id, dataByte.toString());
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block

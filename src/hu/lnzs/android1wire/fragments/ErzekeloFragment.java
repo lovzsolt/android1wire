@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import hu.lnzs.android1wire.R;
 import hu.lnzs.android1wire.data.ErzekeloData;
+import hu.lnzs.android1wire.data.VezerloData;
 import hu.lnzs.android1wire.logic.DownloaderTask;
 import hu.lnzs.android1wire.logic.Erzekelo;
 import hu.lnzs.android1wire.logic.IDataLoader;
@@ -63,6 +65,7 @@ public class ErzekeloFragment extends Fragment implements IDataLoader {
 		mBtnSave.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				ErzekeloData.saveDataToFile(mContext);
+				VezerloData.saveDataToFile(mContext);
 			}
 		});
 		loadDataFromObj();

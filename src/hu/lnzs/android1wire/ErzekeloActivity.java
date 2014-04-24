@@ -29,7 +29,7 @@ public class ErzekeloActivity extends Activity implements IDataLoader {
 		setContentView(R.layout.activity_erzekelo);
 		for (String key : ErzekeloData.getErzekeloSortMap().keySet()) {
 			DownloaderTask dTask = new DownloaderTask(this,
-					DownloaderTask.DATATYPE.CHILD, key);
+					DownloaderTask.DATATYPE.ERZEKELO, key);
 			dTask.execute();
 		}
 		loadDataFromObj();

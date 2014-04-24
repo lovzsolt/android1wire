@@ -2,6 +2,7 @@ package hu.lnzs.android1wire;
 
 import hu.lnzs.android1wire.data.ErzekeloData;
 import hu.lnzs.android1wire.data.HostData;
+import hu.lnzs.android1wire.data.VezerloData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class HomeActivity extends Activity {
 				itemClick(arg1);
 			}
 		});
-		if (HostData.loadDataFromFile(this.getApplicationContext()) &&	ErzekeloData.loadDataFromFile(this.getApplicationContext())){
+		if (HostData.loadDataFromFile(this) &&	ErzekeloData.loadDataFromFile(this) && VezerloData.loadDataFromFile(this)){
 			Log.w("load", "betöltés sikeres");
 		} else{
 			Log.w("load", "betöltés sikertelen");

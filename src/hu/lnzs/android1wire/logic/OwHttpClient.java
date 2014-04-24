@@ -29,7 +29,7 @@ import org.jsoup.select.Elements;
 
 import android.util.Log;
 
-public class OwHttpClient {
+public class OwHttpClient extends DefaultHttpClient{
 	protected Map<String, String> modulok;
 	protected Map<String, String> adatok;
 	public String valasz;
@@ -63,12 +63,13 @@ public class OwHttpClient {
 				Log.e("statusz", String.valueOf(status));
 			} else {
 
+				//HttpClient mClient = new DefaultHttpClient();
 				HttpGet httpget = new HttpGet(HostData.getURL(file).toURI());
 				// Execute the request
 				HttpResponse response;
 				try {
 
-					response = new DefaultHttpClient().execute(httpget);
+					response = this.execute(httpget);
 					// Get hold of the response entity
 					HttpEntity entity = response.getEntity();
 					// If the response does not enclose an entity, there is no
@@ -162,6 +163,7 @@ public class OwHttpClient {
 		VezerloData.dataByte = Byte.valueOf(table
 				.getElementsByAttributeValue("name", "PIO.BYTE").get(0).val()
 				.trim());
+		Log.i("vez_data_byte", VezerloData.dataByte.toString());
 		/* vezérlõ tömbként */
 	}
 
