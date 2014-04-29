@@ -132,12 +132,11 @@ public class OwHttpClient extends DefaultHttpClient{
 	}
 
 	protected void owhttpRespErzekeloFeldolgozo(String httpValasz,
-			Erzekelo xErzekelo) {
+			Erzekelo pErzekelo) {
 		Log.w("hvalasz", httpValasz);
 		Document doc = Jsoup.parse(httpValasz);
 		Element table = doc.getElementsByTag("table").get(1);
 		Elements tr = table.getElementsByTag("tr");
-		String erzekeloNev = doc.getElementsByTag("H1").html();
 		// Erzekelo mErzekelo = new Erzekelo(erzekeloNev);
 		for (Element elem : tr) {
 			Elements td = elem.getElementsByTag("td");
@@ -149,10 +148,8 @@ public class OwHttpClient extends DefaultHttpClient{
 				adat = "ismeretlen";
 			}
 			adatok.put(nev, adat);
-
 		}
-		adatok.put("url", "?a=" + erzekeloNev);
-		xErzekelo.setData(adatok);
+		pErzekelo.setData(adatok);
 	}
 
 	protected void owhttpRespVezerloFeldolgozo(String httpValasz) {
@@ -160,9 +157,9 @@ public class OwHttpClient extends DefaultHttpClient{
 		Document doc = Jsoup.parse(httpValasz);
 		Element table = doc.getElementsByTag("table").get(1);
 		/* vezerlõ Byte formátumban */
-		VezerloData.dataByte = Byte.valueOf(table
+		VezerloData.dataByte = table
 				.getElementsByAttributeValue("name", "PIO.BYTE").get(0).val()
-				.trim());
+				.trim();
 		Log.i("vez_data_byte", VezerloData.dataByte.toString());
 		/* vezérlõ tömbként */
 	}

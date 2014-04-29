@@ -17,12 +17,12 @@ import android.widget.Toast;
 
 public class VezerloData {
 	public static String id;
-	public static Byte dataByte;
+	public static String dataByte;
 	private static final String FILENAME = "vezerlo_file";
 	
 	public static void init(String pId, String data){
 		id = pId;
-		dataByte = Byte.valueOf(data);
+		dataByte = data;
 	}
 	
 	public static boolean loadDataFromFile(Context context) {
@@ -46,7 +46,7 @@ public class VezerloData {
 
 			Iterator<String> vezerloIterator = vezObj.keys();
 				id = vezerloIterator.next();
-				dataByte = Byte.valueOf((String) vezObj.get(id));
+				dataByte = (String) vezObj.get(id);
 		} catch (JSONException e) {
 			Log.e("verzerlo_loadData", e.getLocalizedMessage());
 			e.printStackTrace();
@@ -79,7 +79,7 @@ public class VezerloData {
 		FileOutputStream fileOutStream;
 		JSONObject vezerloData = new JSONObject();
 		try {
-				vezerloData.put(id, dataByte.toString());
+				vezerloData.put(id, dataByte);
 		} catch (JSONException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

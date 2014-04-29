@@ -1,12 +1,15 @@
 package hu.lnzs.android1wire;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import hu.lnzs.android1wire.data.ErzekeloData;
+import hu.lnzs.android1wire.data.ListViewAdapter;
 import hu.lnzs.android1wire.logic.DownloaderTask;
 import hu.lnzs.android1wire.logic.Erzekelo;
 import hu.lnzs.android1wire.logic.IDataLoader;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -19,8 +22,6 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ErzekeloActivity extends Activity implements IDataLoader {
 
-	private final String TEXT1 = "text1";
-	private final String TEXT2 = "text2";
 	private ListView mLv;
 
 	@Override
@@ -46,13 +47,14 @@ public class ErzekeloActivity extends Activity implements IDataLoader {
 		final ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
 
 		for (Erzekelo erz : ErzekeloData.getErzekeloSortMap().values()) {
-			Map<String, String> map = new HashMap<String, String>();
-			map.put(TEXT1, erz.getNev());
-			map.put(TEXT2, erz.getTemperature().toString());
-			list.add(map);
+			if (erz.isSet()) {
+				Map<String, String> map = new HashMap<String, String>();
+				map.put(ListViewAdapter.TEXT1, erz.getNev());
+				map.put(ListViewAdapter.TEXT2, erz.getTemperature().toString());
+				list.add(map);
+			}
 		}
-
-		final SimpleAdapter adapter = createAdapter(list);
+		final SimpleAdapter adapter = ListViewAdapter.createAdapter(this, list);
 		mLv.setAdapter(adapter);
 		mLv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -63,15 +65,6 @@ public class ErzekeloActivity extends Activity implements IDataLoader {
 		});
 	}
 
-	public SimpleAdapter createAdapter(ArrayList<Map<String, String>> list) {
-		/* View-kban szerepeltetni kívánt elemek azonosítója: */
-		final String[] fromMapKey = new String[] { TEXT1, TEXT2 };
-		/* listában szereplõ View-k azonosítója: */
-		final int[] toLayoutId = new int[] { android.R.id.text1,
-				android.R.id.text2 };
-		return new SimpleAdapter(this, list,
-				android.R.layout.simple_list_item_2, fromMapKey, toLayoutId);
-	}
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {

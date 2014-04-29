@@ -1,9 +1,13 @@
 package hu.lnzs.android1wire;
 
+import hu.lnzs.android1wire.data.ErzekeloData;
+import hu.lnzs.android1wire.data.HostData;
+import hu.lnzs.android1wire.data.VezerloData;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 public class SplashActivity extends Activity {
 
@@ -14,6 +18,11 @@ public class SplashActivity extends Activity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         setContentView(R.layout.activity_splash);
+		if (HostData.loadDataFromFile(this) &&	ErzekeloData.loadDataFromFile(this) && VezerloData.loadDataFromFile(this)){
+			Log.w("load", "betöltés sikeres");
+		} else{
+			Log.w("load", "betöltés sikertelen");
+		}
 
         /* New Handler to start the Menu-Activity 
          * and close this Splash-Screen after some seconds.*/

@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import hu.lnzs.android1wire.R;
 import hu.lnzs.android1wire.data.ErzekeloData;
+import hu.lnzs.android1wire.data.ListViewAdapter;
 import hu.lnzs.android1wire.data.VezerloData;
 import hu.lnzs.android1wire.logic.DownloaderTask;
 import hu.lnzs.android1wire.logic.Erzekelo;
@@ -90,12 +91,12 @@ public class ErzekeloFragment extends Fragment implements IDataLoader {
 		for (Entry<String, Erzekelo> erz : ErzekeloData.getErzekeloSortMap()
 				.entrySet()) {
 			Map<String, String> map = new HashMap<String, String>();
-			map.put(TEXT1, erz.getValue().getNev());
-			map.put(TEXT2, erz.getValue().getId());
+			map.put(ListViewAdapter.TEXT1, erz.getValue().getNev());
+			map.put(ListViewAdapter.TEXT2, erz.getValue().getId());
 			list.add(map);
 		}
 
-		final SimpleAdapter adapter = createAdapter(list);
+		final SimpleAdapter adapter = ListViewAdapter.createAdapter(mContext, list);
 
 		mLv.setAdapter(adapter);
 		final IDataLoader iLoader = this;
@@ -114,19 +115,7 @@ public class ErzekeloFragment extends Fragment implements IDataLoader {
 		});
 	}
 
-	public SimpleAdapter createAdapter(ArrayList<Map<String, String>> list) {
-		/* View-kban szerepeltetni kívánt elemek azonosítója: */
-		final String[] fromMapKey = new String[] { TEXT1, TEXT2 };
-		/* listában szereplõ View-k azonosítója: */
-		final int[] toLayoutId = new int[] { android.R.id.text1,
-				android.R.id.text2 };
-
-		return new SimpleAdapter(mRootView.getContext(), list,
-				android.R.layout.simple_list_item_2, fromMapKey, toLayoutId);
-	}
-
-
-
+	
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		loadDataFromObj();

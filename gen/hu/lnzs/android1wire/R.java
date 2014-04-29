@@ -45,8 +45,8 @@ public final class R {
         public static final int hostText=0x7f080011;
         public static final int imageView1=0x7f080006;
         public static final int labelVezerlo=0x7f080007;
-        public static final int lbl_vezerlo_data=0x7f080008;
         public static final int listErzekelo=0x7f080000;
+        public static final int listVezerlo=0x7f080008;
         public static final int listView1=0x7f080004;
         public static final int menuList=0x7f080001;
         public static final int portLabel=0x7f080012;

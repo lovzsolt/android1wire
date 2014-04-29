@@ -38,11 +38,6 @@ public class HomeActivity extends Activity {
 				itemClick(arg1);
 			}
 		});
-		if (HostData.loadDataFromFile(this) &&	ErzekeloData.loadDataFromFile(this) && VezerloData.loadDataFromFile(this)){
-			Log.w("load", "betöltés sikeres");
-		} else{
-			Log.w("load", "betöltés sikertelen");
-		}
 	}
 
 	private ArrayAdapter<String> createArrayAdapter() {

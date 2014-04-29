@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class Erzekelo {
 	private String nev;
-	private String url;
 	private String address;
 	private String alias;
 	private int crc8;
@@ -20,6 +19,7 @@ public class Erzekelo {
 	private short temphigh;
 	private short templow;
 	private String type;
+	private boolean isSet;
 	
 	/** Constructor */
 	public Erzekelo(Map<String, String> adatok){
@@ -38,14 +38,13 @@ public class Erzekelo {
 		temphigh = Integer.valueOf(adatok.get("temphigh")).shortValue();
 		templow = Integer.valueOf(adatok.get("templow")).shortValue();
 		type = adatok.get("type");
-		url = adatok.get("url");
 	}
 	/** Constructor */
 	public Erzekelo(String paramNev){
 		nev = paramNev;
 		id = paramNev;
 		temperature = 0f;
-		url = "?a="+nev;
+		isSet = false;
 	}
 	
 	public void setData(Map<String, String> adatok){
@@ -65,6 +64,7 @@ public class Erzekelo {
 		//temphigh = Integer.valueOf(adatok.get("temphigh")).shortValue();
 		//templow = Integer.valueOf(adatok.get("templow")).shortValue();
 		type = adatok.get("type");
+		isSet = true;
 	}
 	
 
@@ -118,15 +118,11 @@ public class Erzekelo {
 		return type;
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
 	public void setNev(String nev) {
 		this.nev = nev;
+	}
+	public boolean isSet(){
+		return isSet;
 	}
 	
 }
