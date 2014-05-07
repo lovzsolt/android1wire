@@ -30,13 +30,13 @@ import org.jsoup.select.Elements;
 import android.util.Log;
 
 public class OwHttpClient extends DefaultHttpClient{
-	protected Map<String, String> modulok;
-	protected Map<String, String> adatok;
+	//protected Map<String, String> modulok;
+	//protected Map<String, String> adatok;
 	public String valasz;
 
 	public OwHttpClient() {
-		adatok = new HashMap<String, String>();
-		modulok = new HashMap<String, String>();
+	//	adatok = new HashMap<String, String>();
+	//	modulok = new HashMap<String, String>();
 	}
 
 	/**
@@ -68,19 +68,15 @@ public class OwHttpClient extends DefaultHttpClient{
 				// Execute the request
 				HttpResponse response;
 				try {
-
 					response = this.execute(httpget);
 					// Get hold of the response entity
 					HttpEntity entity = response.getEntity();
 					// If the response does not enclose an entity, there is no
 					// need
 					// to worry about connection release
-
 					if (entity != null) {
-
 						// A Simple JSON Response Read
 						valaszStream = entity.getContent();
-						if (valaszStream.available() > 0) {
 							BufferedReader reader = new BufferedReader(
 									new InputStreamReader(valaszStream));
 							String line = null;
@@ -90,7 +86,6 @@ public class OwHttpClient extends DefaultHttpClient{
 								sb.append(line + "");
 							}
 							reader.close();
-						}
 						// now you have the string representation of the HTML
 						// request
 						valaszStream.close();
@@ -117,8 +112,6 @@ public class OwHttpClient extends DefaultHttpClient{
 		Document doc = Jsoup.parse(httpValasz);
 		Elements elemek = doc.getElementsByTag("BIG");
 		Erzekelo mErzekelo = null;
-		SortedMap<String, Erzekelo> erzekeloSortMap = new TreeMap<String, Erzekelo>();
-		ArrayList<Erzekelo> erzekeloMap = new ArrayList<Erzekelo>();
 		for (Element elem : elemek) {
 			String elemId = elem.html();
 			// érzékelõk
@@ -126,12 +119,12 @@ public class OwHttpClient extends DefaultHttpClient{
 				mErzekelo = new Erzekelo(elemId);
 				ErzekeloData.putMap(mErzekelo);
 			} else if (elemId.startsWith("29.")) {
-				VezerloData.init(elemId, "0");
+				VezerloData.init(elemId);
 			}
 		}
 	}
 
-	protected void owhttpRespErzekeloFeldolgozo(String httpValasz,
+	/*protected void owhttpRespErzekeloFeldolgozo(String httpValasz,
 			Erzekelo pErzekelo) {
 		Log.w("hvalasz", httpValasz);
 		Document doc = Jsoup.parse(httpValasz);
@@ -151,17 +144,19 @@ public class OwHttpClient extends DefaultHttpClient{
 		}
 		pErzekelo.setData(adatok);
 	}
-
-	protected void owhttpRespVezerloFeldolgozo(String httpValasz) {
-		Log.w("hvalasz", httpValasz);
-		Document doc = Jsoup.parse(httpValasz);
-		Element table = doc.getElementsByTag("table").get(1);
-		/* vezerlõ Byte formátumban */
-		VezerloData.dataByte = table
-				.getElementsByAttributeValue("name", "PIO.BYTE").get(0).val()
-				.trim();
-		Log.i("vez_data_byte", VezerloData.dataByte.toString());
-		/* vezérlõ tömbként */
-	}
+	*/
+	/*
+	 * protected void owhttpRespVezerloFeldolgozo(String httpValasz) {
+	 *
+	*	Log.w("hvalasz", httpValasz);
+	*	Document doc = Jsoup.parse(httpValasz);
+	*	Element table = doc.getElementsByTag("table").get(1);
+	*	// vezerlõ Byte formátumban 
+	*	VezerloData.setDataByte(table
+	*			.getElementsByAttributeValue("name", "PIO.BYTE").get(0).val()
+	*			.trim());
+	*	Log.i("vez_data_byte", VezerloData.getDataByte());
+	*	
+	}*/
 
 }

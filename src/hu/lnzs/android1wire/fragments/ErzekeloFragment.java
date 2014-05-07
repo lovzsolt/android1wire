@@ -43,8 +43,6 @@ public class ErzekeloFragment extends Fragment implements IDataLoader {
 	public static FragmentManager erzFragmentMgr;
 	private ListView mLv;
 
-	private final String TEXT1 = "text1";
-	private final String TEXT2 = "text2";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +58,7 @@ public class ErzekeloFragment extends Fragment implements IDataLoader {
 				onDownload(v);
 			}
 		});
-		ErzekeloFragment.erzFragmentMgr = this.getFragmentManager();
+		erzFragmentMgr = this.getFragmentManager();
 
 		Button mBtnSave = (Button) mRootView.findViewById(R.id.saveButton);
 		mBtnSave.setOnClickListener(new View.OnClickListener() {

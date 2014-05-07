@@ -16,8 +16,13 @@
         android:layout_marginTop="14dp"
         android:text="@string/vezerlo"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <ListView android:id="@+id/listVezerlo"
+    <ListView
+        android:id="@+id/listVezerlo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/labelVezerlo"
+		android:layout_alignParentBottom="true"
+		android:layout_below="@+id/labelVezerlo" >
+    </ListView>
+
 </RelativeLayout>

@@ -29,7 +29,7 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080016;
+        public static final int action_settings=0x7f080018;
         public static final int btnDonwload=0x7f08000d;
         public static final int btnSaveHost=0x7f080015;
         public static final int chkEmulator=0x7f080014;
@@ -52,6 +52,8 @@ public final class R {
         public static final int portLabel=0x7f080012;
         public static final int portText=0x7f080013;
         public static final int saveButton=0x7f08000e;
+        public static final int vezIdText=0x7f080016;
+        public static final int vezNevText=0x7f080017;
     }
     public static final class layout {
         public static final int activity_erzekelo=0x7f030000;
@@ -64,6 +66,8 @@ public final class R {
         public static final int erzekelo_settings_fragment=0x7f030007;
         public static final int fragment_splash=0x7f030008;
         public static final int host_settings_fragment=0x7f030009;
+        public static final int vez_dialog=0x7f03000a;
+        public static final int vezerlo_settings_fragment=0x7f03000b;
     }
     public static final class menu {
         public static final int home=0x7f070000;

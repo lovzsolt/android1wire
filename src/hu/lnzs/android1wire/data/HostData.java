@@ -45,18 +45,18 @@ public class HostData {
 			file  = "owhttp/"+file;
 		}
 		URL mURL= new URL(host.getSchemeName(), host.getHostName(), HostData.host.getPort(), file);
-		Log.e("url", mURL.toString());
+		Log.i("url", mURL.toString());
 		return mURL;
 	}
 	
-	public static boolean loadDataFromFile(Context context) {
-				File hostFile = context.getFileStreamPath(FILENAME);
+	public static boolean loadDataFromFile(Context ctx) {
+				File hostFile = ctx.getFileStreamPath(FILENAME);
 		if (!hostFile.exists()){
 			return false;
 		}
 		FileInputStream fis;
 		try {
-			fis = context.openFileInput(FILENAME);
+			fis = ctx.openFileInput(FILENAME);
 			BufferedReader bsr = new BufferedReader(new InputStreamReader(fis));
 			String line;
 			StringBuilder sb = new StringBuilder();
@@ -70,15 +70,14 @@ public class HostData {
 			HostData.initHostData((String) hostData.get("host"),
 					String.valueOf(hostData.get("port"))
 					);
-			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			Toast.makeText(context, "nincs ilyen fájl", Toast.LENGTH_SHORT)
+			Toast.makeText(ctx, "nincs ilyen fájl", Toast.LENGTH_SHORT)
 					.show();
 			e.printStackTrace();
 		} catch (IOException e) {
-			Log.e("host_loadData", e.getLocalizedMessage());
+			Log.i("host_loadData", e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 	

@@ -1,6 +1,7 @@
 package hu.lnzs.android1wire.logic;
 
 import hu.lnzs.android1wire.data.ErzekeloData;
+import hu.lnzs.android1wire.data.VezerloData;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
@@ -30,14 +31,13 @@ public class DownloaderTask extends AsyncTask<String, String, String> {
 				mDLoader.loadDataFromObj();
 				break;
 			case ERZEKELO:
-				Erzekelo mErzekelo = ErzekeloData.getErzById(this.deviceKey);
-				owClient.owhttpRespErzekeloFeldolgozo(valasz, mErzekelo);
+				ErzekeloData.erzekeloFeldolgozo(valasz, this.deviceKey);
 				//mDLoader.loadDataFromObj();
-				ErzekeloData.putMap(mErzekelo);
+				//ErzekeloData.putMap(mErzekelo);
 				mDLoader.onClick(null, 0);
 				break;
 			case VEZERLO:
-				owClient.owhttpRespVezerloFeldolgozo(valasz);
+				VezerloData.vezerloFeldolgozo(valasz);
 				mDLoader.loadDataFromObj();
 				break;
 			}
